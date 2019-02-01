@@ -21,10 +21,10 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {AutonumericOptions} from './autonumeric-options';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { AutonumericOptions } from './autonumeric-options';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import AutoNumeric from 'autonumeric';
-import {BasicInput} from './basic-input';
+import { BasicInput } from './basic-input';
 
 @Component({
   selector: 'app-autonumeric',
@@ -45,12 +45,10 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
   options: AutonumericOptions;
   @Input()
   type: string;
-  @Input()
-  disabled: boolean;
   @ViewChild('input')
   input: ElementRef;
   instance: any;
-  globalInstance: () => void;
+  unlistenFormatted: () => void;
   internal: string;
   @Output()
   format = new EventEmitter();
@@ -61,20 +59,16 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
 
   constructor(private cd: ChangeDetectorRef, private renderer: Renderer2) {
     super();
+    this.input = this.renderer.createElement('input');
   }
 
   ngOnInit() {
   }
 
   ngAfterViewInit(): void {
-    if (this.disabled === true) {
-      const div = this.renderer.createElement('input');
-      this.instance = new AutoNumeric(div, this.options);
-    } else {
-      this.instance = new AutoNumeric(this.input.nativeElement, this.options);
-    }
-    this.globalInstance = this.renderer.listen(this.input.nativeElement, 'autoNumeric:formatted', () => {
-      this.onFormatted();
+    this.instance = new AutoNumeric(this.input.nativeElement, this.options);
+    this.unlistenFormatted = this.renderer.listen(this.input.nativeElement, 'autoNumeric:formatted', ($event) => {
+      this.onFormatted($event);
     });
   }
 
@@ -82,7 +76,9 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
     if (!this.instance) {
       return;
     }
-    this.instance.set(this.ngModel);
+    if (changes.ngModel) {
+      this.instance.set(this.ngModel);
+    }
   }
 
   @HostListener('change', ['$event.target.value'])
@@ -95,9 +91,8 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
     this._onTouched();
   }
 
-  onFormatted() {
-    const value = this.instance.getNumber();
-    this.format.emit(value);
+  onFormatted($event) {
+    this.format.emit($event);
   }
 
   @HostListener('blur', ['$event'])
@@ -117,12 +112,13 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
   }
 
   writeValue(obj: any): void {
-    this.internal = obj;
+    if (this.instance) {
+      this.internal = this.instance.getFormatted();
+    }
   }
 
   ngOnDestroy(): void {
-    let d = () => this.globalInstance();
-    d();
+    this.unlistenFormatted();
   }
 
 }

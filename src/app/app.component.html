@@ -1,3 +1,8 @@
-<app-autonumeric [options]="options" [(ngModel)]="myModel" (ngModelChange)="onChange($event)"
-                 (change)="onChange($event)" (format)="onFormat($event)" #numeric></app-autonumeric>
+<ng-container *ngIf="show">
+    <app-autonumeric [options]="options" [(ngModel)]="myModel" (ngModelChange)="onChange($event)" (change)="onChange($event)"
+    (format)="onFormat($event)" [(disabled)]="disabeld" #numeric></app-autonumeric>
+</ng-container>
 
+<button (click)="show=!show">show/hide</button>
+
+<button (click)="disabeld=!disabeld">disabe/enable</button>
