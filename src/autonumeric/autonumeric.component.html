@@ -1,0 +1,4 @@
+<input #input  [type]="!disabled && !readonly ? 'text' :'hidden'" [disabled]="disabled" [required]="required" />
+<ng-container *ngIf="disabled || readonly">
+  <span> {{internal}}</span>
+</ng-container>

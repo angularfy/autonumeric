@@ -19,18 +19,15 @@ import {
   Renderer2,
   SimpleChanges,
   ViewChild,
-  ViewEncapsulation,
 } from '@angular/core';
-import { AutonumericOptions } from './autonumeric-options';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {AutonumericOptions} from './autonumeric-options';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import AutoNumeric from 'autonumeric';
-import { BasicInput } from './basic-input';
+import {BasicInput} from './basic-input';
 
 @Component({
-  selector: 'app-autonumeric',
+  selector: 'ng-autonumeric',
   templateUrl: './autonumeric.component.html',
-  styleUrls: ['./autonumeric.component.css'],
-  encapsulation: ViewEncapsulation.None,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => AutonumericComponent),
@@ -82,7 +79,7 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
   }
 
   @HostListener('change', ['$event.target.value'])
-  handleChage(value) {
+  handleChange(value) {
     this.writeValue(value);
     if (this.instance) {
       value = this.instance.getNumber();
@@ -95,7 +92,7 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
     this.format.emit($event);
   }
 
-  @HostListener('blur', ['$event'])
+  @HostListener('blur')
   handleTouched() {
     this._onTouched();
   }
@@ -109,6 +106,7 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
   }
 
   setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 
   writeValue(obj: any): void {

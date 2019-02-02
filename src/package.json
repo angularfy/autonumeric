@@ -1,0 +1,33 @@
+{
+  "name": "@yemlil/ng-autonumeric",
+  "version": "4.5.4",
+  "description": "Angular implementation of autoNumeric",
+  "keywords": [
+    "angular",
+    "numeric",
+    "components",
+    "autonumeric",
+    "auto",
+    "numeric",
+    "number",
+    "mask",
+    "decimal",
+    "regex",
+    "mask"
+  ],
+  "author": "Abdelghani AINOUSS",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ainouss/ng-autonumeric.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ainouss/ng-autonumeric/issues"
+  },
+  "homepage": "http://blog.ainouss.com/ng-autonumeric",
+  "peerDependencies": {
+    "@angular/common": "^7.3.0",
+    "@angular/core": "^7.3.0",
+    "autonumeric": "^4.5.4"
+  }
+}

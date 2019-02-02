@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to angular-autoNumeric!');
+    expect(page.getTitleText()).toEqual('Welcome to ng-autonumeric!');
   });
 
   afterEach(async () => {

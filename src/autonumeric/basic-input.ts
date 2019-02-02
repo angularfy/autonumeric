@@ -3,14 +3,11 @@
  * @description
  * Basic HTML attributes for numeric component
  */
-import { Input } from "@angular/core"
+import {Input} from "@angular/core"
 
 
-export class BasicInput {
-  @Input()
-  max: number;
-  @Input()
-  min: number;
+export class BasicInput implements Partial<HTMLInputElement> {
+
   @Input()
   required: boolean;
   @Input()
