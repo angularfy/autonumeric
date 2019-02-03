@@ -1,5 +1,5 @@
 {
-  "name": "@yemlil/ng-autonumeric",
+  "name": "@angularfy/ng-autonumeric",
   "version": "4.5.4",
   "description": "Angular implementation of autoNumeric",
   "keywords": [
@@ -7,6 +7,7 @@
     "numeric",
     "components",
     "autonumeric",
+    "ng-autonumeric",
     "auto",
     "numeric",
     "number",
@@ -18,13 +19,13 @@
   "author": "Abdelghani AINOUSS",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yemlil/ng-autonumeric.git"
+    "url": "git+https://github.com/angularfy/ng-autonumeric.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yemlil/ng-autonumeric/issues"
+    "url": "https://github.com/angularfy/ng-autonumeric/issues"
   },
-  "homepage": "http://blog.ainouss.com/ng-autonumeric",
+  "homepage": "http://blog.ainouss.com/angularfy/ng-autonumeric",
   "peerDependencies": {
     "@angular/common": "^4.0.1",
     "@angular/core": "^4.0.1",

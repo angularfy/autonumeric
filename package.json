@@ -1,11 +1,11 @@
 {
-  "name": "ng-autonumeric",
-  "version": "0.0.0",
+  "name": "@angularfy/ng-autonumeric",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng-packagr -p package.json",
-    "test": "yarn ng-autonumeric:test",
+    "test": "yarn ngautonumeric:test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

@@ -1,11 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AutonumericComponent} from './autonumeric.component';
+import {NgAutonumericComponent} from './autonumeric.component';
 
 @NgModule({
-  declarations: [AutonumericComponent],
+  declarations: [NgAutonumericComponent],
   imports: [CommonModule],
-  exports: [AutonumericComponent]
+  exports: [NgAutonumericComponent]
 })
-export class AutonumericModule {
+export class NgAutonumericModule {
 }
+

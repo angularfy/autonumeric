@@ -4,21 +4,21 @@
  */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AutonumericComponent } from './autonumeric.component';
+import { NgAutonumericComponent } from './autonumeric.component';
 
-describe('AutonumericComponent', () => {
-  let component: AutonumericComponent;
-  let fixture: ComponentFixture<AutonumericComponent>;
+describe('NgAutonumericComponent', () => {
+  let component: NgAutonumericComponent;
+  let fixture: ComponentFixture<NgAutonumericComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AutonumericComponent ]
+      declarations: [ NgAutonumericComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AutonumericComponent);
+    fixture = TestBed.createComponent(NgAutonumericComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

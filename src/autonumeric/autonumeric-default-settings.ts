@@ -5,7 +5,7 @@
  * autonumeric configuration, please refer http://autonumeric.org/guide for more details;
  */
 
-export interface AutonumericDefaultSettings {
+export interface NgAutonumericDefaultSettings {
   allowDecimalPadding: any;
   alwaysAllowDecimalCharacter: any;
   caretPositionOnFocus: any;

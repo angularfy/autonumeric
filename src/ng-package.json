@@ -3,10 +3,8 @@
   "dest": "../dist/ng-autonumeric",
   "deleteDestPath": false,
   "lib": {
-    "flatModuleFile": "ng-autonumeric",
     "entryFile": "./index.ts",
-    "umdId": "ng-autonumeric",
-    "amdId": "ng-autonumeric"
-  },
-  "whitelistedNonPeerDependencies": ["."]
+    "umdId": "ngautonumeric",
+    "amdId": "ngautonumeric"
+  }
 }

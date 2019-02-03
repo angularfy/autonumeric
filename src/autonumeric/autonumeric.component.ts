@@ -19,8 +19,9 @@ import {
   Renderer2,
   SimpleChanges,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
-import {AutonumericOptionsSelect} from './autonumeric-options-select';
+import {NgAutonumericOptionsSelect} from './autonumeric-options-select';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import AutoNumeric from 'autonumeric';
 import {BasicInput} from './basic-input';
@@ -30,16 +31,17 @@ import {BasicInput} from './basic-input';
   templateUrl: './autonumeric.component.html',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => AutonumericComponent),
+    useExisting: forwardRef(() => NgAutonumericComponent),
     multi: true
-  }]
+  }],
+  encapsulation: ViewEncapsulation.None
 })
-export class AutonumericComponent extends BasicInput implements OnInit, OnChanges, ControlValueAccessor, AfterViewInit, OnDestroy {
+export class NgAutonumericComponent extends BasicInput implements OnInit, OnChanges, ControlValueAccessor, AfterViewInit, OnDestroy {
 
   @Input()
   ngModel: number | string;
   @Input()
-  options: AutonumericOptionsSelect;
+  options: NgAutonumericOptionsSelect;
   @Input()
   type: string;
   @ViewChild('input')
@@ -62,6 +64,9 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
   }
 
   ngAfterViewInit(): void {
+    if (AutoNumeric === undefined) {
+      throw "AutoNumeric is a peer dependency, please make sure you install it before using this library. Hint : npm install --save autonumeric@latest";
+    }
     this.instance = new AutoNumeric(this.input.nativeElement, this.options);
     this.instance.set(this.ngModel);
     this.unlistenFormatted = this.renderer.listen(this.input.nativeElement, 'autoNumeric:formatted', ($event) => {
@@ -76,6 +81,15 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
     if (changes.ngModel) {
       this.instance.set(this.ngModel);
     }
+    if (changes.options) {
+      this.instance.update(this.options);
+    }
+  }
+
+  set(value) {
+    if (this.instance) {
+      this.instance.set(value);
+    } else throw 'NgAutonumeric instance not available. try using two binding by providing [(ngModel)]';
   }
 
   @HostListener('change', ['$event.target.value'])
