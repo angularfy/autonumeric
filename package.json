@@ -5,11 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng-packagr -p package.json",
-    "test": "ng test",
+    "test": "yarn ng-autonumeric:test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {},
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
@@ -33,6 +32,7 @@
     "ts-node": "~7.0.0",
     "tsickle": "^0.34.2",
     "tslint": "~5.11.0",
-    "typescript": "~3.2.2"
+    "typescript": "~3.2.2",
+    "autonumeric": "^4.0.0"
   }
 }

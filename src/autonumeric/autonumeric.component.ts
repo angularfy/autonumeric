@@ -20,7 +20,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import {AutonumericOptions} from './autonumeric-options';
+import {AutonumericOptionsSelect} from './autonumeric-options-select';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import AutoNumeric from 'autonumeric';
 import {BasicInput} from './basic-input';
@@ -39,7 +39,7 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
   @Input()
   ngModel: number | string;
   @Input()
-  options: AutonumericOptions;
+  options: AutonumericOptionsSelect;
   @Input()
   type: string;
   @ViewChild('input')
@@ -56,7 +56,6 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
 
   constructor(private cd: ChangeDetectorRef, private renderer: Renderer2) {
     super();
-    this.input = this.renderer.createElement('input');
   }
 
   ngOnInit() {
@@ -64,6 +63,7 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
 
   ngAfterViewInit(): void {
     this.instance = new AutoNumeric(this.input.nativeElement, this.options);
+    this.instance.set(this.ngModel);
     this.unlistenFormatted = this.renderer.listen(this.input.nativeElement, 'autoNumeric:formatted', ($event) => {
       this.onFormatted($event);
     });
@@ -118,5 +118,4 @@ export class AutonumericComponent extends BasicInput implements OnInit, OnChange
   ngOnDestroy(): void {
     this.unlistenFormatted();
   }
-
 }
