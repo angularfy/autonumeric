@@ -41,7 +41,7 @@ export class YourAppModule {
 ```
 
 
-### How to use?
+### How to use the component?
 
 The AutoNumeric component can be instantiated the same way `AutoNumeric` can.
 
@@ -90,6 +90,18 @@ you can also use object literal as options directly in HTML
     }">
 </ng-autonumeric>
 ```
+#### How to use the directive (since v1.0.1)
+
+for better integration with input tag, we provide a directive :
+
+``` HTML
+
+<input [ngAutonumeric]="'French'" ngAutonumeric [(ngModel)]="myModel" (change)="onChange($event)" (format)="onFormat($event)"  />
+
+```
+if you want to keep your ngModel synchronized please use two-way binding otherwise, you can capture the change or format event.
+(format is more verbose, happens every time the input visually changes, the change event in the other hand, is triggered only one the user types something and leaves the input.)
+
 #### Readonly mode 
 
 you can use the component in a reardonly mode :
@@ -100,6 +112,8 @@ you can use the component in a reardonly mode :
 </ng-autonumeric>
 ```
 in this case, we use a hidden input to instantiate the component & a span tag to display the value.
+
+
 #### Styling 
 we are agnostic about how the input should be styled. you can define your own style rules
 ```css
@@ -135,6 +149,15 @@ This supports the same browsers than AutoNumeric supports:
 
 *(latest 2 versions)*
 If you use IE/Edge/Safari/Opera, this *might* work ;)
+
+### What's next ? 
+
+I will be working on supporting more AutoNumeric events (only autonumeric:formatted is supported for now). If you have any suggestions please feel free to reach by email bellow.
+
+### Greetings
+
+This project is hugely inspired from [vue-js implementtation of AutoNumeric](https://github.com/autoNumeric/vue-autoNumeric) by [ Alexandre Bonneau] (https://github.com/AlexandreBonneau)
+
 
 ### Support
 
