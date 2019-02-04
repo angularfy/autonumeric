@@ -156,7 +156,7 @@ I will be working on supporting more AutoNumeric events (only autonumeric:format
 
 ### Greetings
 
-This project is hugely inspired from [vue-js implementtation of AutoNumeric](https://github.com/autoNumeric/vue-autoNumeric) by [ Alexandre Bonneau] (https://github.com/AlexandreBonneau)
+This project is hugely inspired from [vue-js implementtation of AutoNumeric](https://github.com/autoNumeric/vue-autoNumeric) by [Alexandre Bonneau] (https://github.com/AlexandreBonneau)
 
 
 ### Support
