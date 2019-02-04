@@ -2,7 +2,7 @@
 
 An Angular library that wraps the awesome [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) input formatter library
 
-Get in touch on ng.autonumeric@ainouss.fr
+Get in touch on autonumeric@angularfy.com
 
 ---
 
@@ -15,6 +15,7 @@ ng-autoNumeric wraps the awesome AutoNumeric library and generate an `<input>` e
 This means you **need** to include the [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) library.
 
 ## Dependencies
+
 The only two dependencies are [Angular](https://angular.io) and [autoNumeric 4](https://github.com/autoNumeric/autoNumeric/). 
 Here is the list of minimal required versions:
 
@@ -23,10 +24,18 @@ Here is the list of minimal required versions:
 | 1.x.x          | ^4.0.0  | ^4.0.0        |
 
 ## Installation
-After installing the above dependencies, install `ng-autonumeric` via:
+
+After installing the above dependencies, install `ng-autonumeric` via npm:
+
 ```shell
 npm install --save @angularfy/ng-autonumeric
 ```
+or yarn :
+
+```shell
+yarn add @angularfy/ng-autonumeric
+```
+
 Once installed you need to import our main module:
 ```js
 import { NgAutonumericModule } from '@angularfy/ng-autonumeric';
@@ -40,8 +49,7 @@ export class YourAppModule {
 }
 ```
 
-
-### How to use the NgAutonumericComponent?
+### How to use the NgAutonumericComponent ?
 
 The AutoNumeric component can be instantiated the same way `AutoNumeric` can.
 
@@ -95,11 +103,9 @@ you can also use object literal as options directly in HTML
 for better integration with input tag, we provide a directive :
 
 ``` HTML
-
 <input [ngAutonumeric]="'French'" ngAutonumeric [(ngModel)]="myModel" (change)="onChange($event)" (format)="onFormat($event)"  />
-
 ```
-if you want to keep your ngModel synchronized please use two-way binding otherwise, you can capture the change or format event.
+If you want to keep your ngModel synchronized please use two-way binding otherwise, you can capture the change or format event.
 (format is more verbose, happens every time the input visually changes, the change event in the other hand, is triggered only when the user types something and leaves the input.)
 
 #### Readonly mode 
