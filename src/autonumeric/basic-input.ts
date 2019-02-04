@@ -16,4 +16,6 @@ export class BasicInput implements Partial<HTMLInputElement> {
   readonly: boolean;
   @Input()
   title: string;
+  @Input()
+  placeholder: string;
 }

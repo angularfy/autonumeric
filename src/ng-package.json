@@ -4,7 +4,7 @@
   "deleteDestPath": false,
   "lib": {
     "entryFile": "./index.ts",
-    "umdId": "ngautonumeric",
-    "amdId": "ngautonumeric"
+    "umdId": "nga",
+    "amdId": "nga"
   }
 }

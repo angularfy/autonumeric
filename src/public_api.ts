@@ -1,1 +1,1 @@
-export * from './autonumeric/autonumeric.module'
+export * from './index'

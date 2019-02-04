@@ -1,6 +1,6 @@
 {
   "name": "@angularfy/ng-autonumeric",
-  "version": "4.5.4",
+  "version": "1.0.1",
   "description": "Angular implementation of autoNumeric",
   "keywords": [
     "angular",
@@ -29,6 +29,7 @@
   "peerDependencies": {
     "@angular/common": "^4.0.1",
     "@angular/core": "^4.0.1",
+    "@angular/forms": "^4.0.1",
     "autonumeric": "^4.0.1"
   }
 }
