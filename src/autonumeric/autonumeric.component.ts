@@ -1,6 +1,5 @@
 /**
  * @author Abdelghani AINOUSS
- * abdelghani@ainouss.fr
  */
 
 import {
@@ -130,6 +129,7 @@ export class NgAutonumericComponent extends BasicInput implements OnInit, OnChan
   }
 
   ngOnDestroy(): void {
-    this.unlistenFormatted();
+    if(this.unlistenFormatted)
+      this.unlistenFormatted();
   }
 }

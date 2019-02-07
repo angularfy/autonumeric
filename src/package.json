@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/angularfy/ng-autonumeric/issues"
   },
-  "homepage": "http://blog.ainouss.com/angularfy/ng-autonumeric",
+  "homepage": "http://www.angularfy.com/projects/ng-autonumeric",
   "peerDependencies": {
     "@angular/common": "^4.0.1",
     "@angular/core": "^4.0.1",

@@ -1,6 +1,5 @@
 /**
  * @author Abdelghani AINOUSS
- * abdelghani@ainouss.fr
  */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
