@@ -1,6 +1,6 @@
 {
   "name": "@angularfy/ng-autonumeric",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,6 +11,9 @@
   },
   "repository": {
     "url": "git://github.com/angularfy/ng-autonumeric.git"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/"
   },
   "dependencies": {},
   "devDependencies": {
