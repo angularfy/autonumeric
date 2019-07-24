@@ -9,6 +9,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "repository": {
+    "url": "git://github.com/angularfy/ng-autonumeric.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
