@@ -38,8 +38,6 @@ import {BasicInput} from './basic-input';
 export class NgAutonumericComponent extends BasicInput implements OnInit, OnChanges, ControlValueAccessor, AfterViewInit, OnDestroy {
 
   @Input()
-  ngModel: number | string;
-  @Input()
   options: NgAutonumericOptionsSelect;
   @Input()
   type: string;
@@ -67,18 +65,15 @@ export class NgAutonumericComponent extends BasicInput implements OnInit, OnChan
       throw "AutoNumeric is a peer dependency, please make sure you install it before using this library. Hint : npm install --save autonumeric@latest";
     }
     this.instance = new AutoNumeric(this.input.nativeElement, this.options);
-    this.instance.set(this.ngModel);
+    this.instance.set(this.internal);
     this.unlistenFormatted = this.renderer.listen(this.input.nativeElement, 'autoNumeric:formatted', ($event) => {
-      this.onFormatted($event);
+      this.format.emit($event);
     });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!this.instance) {
       return;
-    }
-    if (changes.ngModel) {
-      this.instance.set(this.ngModel);
     }
     if (changes.options) {
       this.instance.update(this.options);
@@ -93,16 +88,10 @@ export class NgAutonumericComponent extends BasicInput implements OnInit, OnChan
 
   @HostListener('change', ['$event.target.value'])
   handleChange(value) {
-    this.writeValue(value);
     if (this.instance) {
       value = this.instance.getNumber();
     }
     this._onChange(value);
-    this._onTouched();
-  }
-
-  onFormatted($event) {
-    this.format.emit($event);
   }
 
   @HostListener('blur')
@@ -123,13 +112,14 @@ export class NgAutonumericComponent extends BasicInput implements OnInit, OnChan
   }
 
   writeValue(obj: any): void {
+    this.internal = obj;
     if (this.instance) {
-      this.internal = this.instance.getFormatted();
+      this.instance.set(obj);
     }
   }
 
   ngOnDestroy(): void {
-    if(this.unlistenFormatted)
+    if (this.unlistenFormatted)
       this.unlistenFormatted();
   }
 }

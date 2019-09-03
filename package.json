@@ -19,6 +19,7 @@
     "@angular/cli": "~7.3.0",
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",
+    "@angular/compiler": "7.2.15",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
