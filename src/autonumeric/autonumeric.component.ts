@@ -68,6 +68,7 @@ export class NgAutonumericComponent extends BasicInput implements OnInit, OnChan
     this.instance.set(this.internal);
     this.unlistenFormatted = this.renderer.listen(this.input.nativeElement, 'autoNumeric:formatted', ($event) => {
       this.format.emit($event);
+      this._onChange(this.instance.getNumber());
     });
   }
 
