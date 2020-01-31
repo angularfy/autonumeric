@@ -20,10 +20,10 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {NgAutonumericOptionsSelect} from './autonumeric-options-select';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { NgAutonumericOptionsSelect } from './autonumeric-options-select';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import AutoNumeric from 'autonumeric';
-import {BasicInput} from './basic-input';
+import { BasicInput } from './basic-input';
 
 @Component({
   selector: 'ng-autonumeric',
@@ -45,7 +45,7 @@ export class NgAutonumericComponent extends BasicInput implements OnInit, OnChan
   input: ElementRef;
   instance: any;
   unlistenFormatted: () => void;
-  internal: string;
+  unlistenRawValueModified: () => void;
   @Output()
   format = new EventEmitter();
   _onChange = (_) => {
@@ -65,10 +65,11 @@ export class NgAutonumericComponent extends BasicInput implements OnInit, OnChan
       throw "AutoNumeric is a peer dependency, please make sure you install it before using this library. Hint : npm install --save autonumeric@latest";
     }
     this.instance = new AutoNumeric(this.input.nativeElement, this.options);
-    this.instance.set(this.internal);
     this.unlistenFormatted = this.renderer.listen(this.input.nativeElement, 'autoNumeric:formatted', ($event) => {
       this.format.emit($event);
-      this._onChange(this.instance.getNumber());
+    });
+    this.unlistenRawValueModified = this.renderer.listen(this.input.nativeElement, 'autoNumeric:rawValueModified', ($event) => {
+      this._onChange($event.detail.newRawValue);
     });
   }
 
@@ -113,7 +114,6 @@ export class NgAutonumericComponent extends BasicInput implements OnInit, OnChan
   }
 
   writeValue(obj: any): void {
-    this.internal = obj;
     if (this.instance) {
       this.instance.set(obj);
     }
@@ -122,5 +122,8 @@ export class NgAutonumericComponent extends BasicInput implements OnInit, OnChan
   ngOnDestroy(): void {
     if (this.unlistenFormatted)
       this.unlistenFormatted();
+    if (this.unlistenRawValueModified) {
+      this.unlistenRawValueModified();
+    }
   }
 }
