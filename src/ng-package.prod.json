@@ -1,8 +1,8 @@
 {
   "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../dist/ng-autonumeric",
+  "dest": "../dist/autonumeric",
   "lib": {
-    "flatModuleFile": "ng-autonumeric",
+    "flatModuleFile": "autonumeric",
     "entryFile": "./index.ts",
     "umdId": "nga",
     "amdId": "nga"

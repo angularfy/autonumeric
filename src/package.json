@@ -7,7 +7,7 @@
     "numeric",
     "components",
     "autonumeric",
-    "ng-autonumeric",
+    "autonumeric",
     "auto",
     "numeric",
     "number",
@@ -19,13 +19,13 @@
   "author": "Abdelghani AINOUSS",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/angularfy/ng-autonumeric.git"
+    "url": "git+https://github.com/angularfy/autonumeric.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/angularfy/ng-autonumeric/issues"
+    "url": "https://github.com/angularfy/autonumeric/issues"
   },
-  "homepage": "http://www.angularfy.com/projects/ng-autonumeric",
+  "homepage": "http://www.angularfy.com/projects/autonumeric",
   "peerDependencies": {
     "@angular/common": "^4.0.1",
     "@angular/core": "^4.0.1",

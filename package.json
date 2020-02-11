@@ -10,7 +10,7 @@
     "e2e": "ng e2e"
   },
   "repository": {
-    "url": "git://github.com/angularfy/ng-autonumeric.git"
+    "url": "git://github.com/angularfy/autonumeric.git"
   },
   "dependencies": {},
   "devDependencies": {
