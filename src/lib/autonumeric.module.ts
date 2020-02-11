@@ -2,7 +2,7 @@ import {InjectionToken, ModuleWithProviders, NgModule} from '@angular/core';
 import {AutonumericOptions} from "./autonumeric.model";
 import {AutonumericDefaults} from "./autonumeric-defaults.service";
 import {AutonumericDirective} from "./autonumeric.directive";
-import {CommonModule} from "@angular/common";
+import {CommonModule} from '@angular/common';
 
 export const USER_DEFAULTS = new InjectionToken('autonumeric defaults');
 

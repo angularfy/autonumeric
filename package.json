@@ -3,38 +3,17 @@
   "version": "3.0.0",
   "scripts": {
     "ng": "ng",
-    "build:demo": "webpack",
-    "build:dist": "ng-packagr -p package.json",
-    "build:clean": "del-cli dist",
-    "commit": "git-cz",
-    "copyfiles": "copyfiles CHANGELOG.md dist",
-    "prerelease": "npm test",
-    "pack": "cd dist && npm pack",
-    "release:git": "standard-version && git push --follow-tags origin master",
-    "release:npm": "npm run build:dist && npm run copyfiles && npm publish dist",
-    "release:pack": "npm run build:dist && npm run copyfiles && npm run pack",
-    "release": "npm run release:git && npm run release:npm",
-    "postrelease": "npm run build:clean && npm run gh-pages",
-    "codecov": "cat coverage/lcov.info | codecov",
-
-  },
-  "ngPackage": {
-    "lib": {
-      "entryFile": "src/index.ts"
-    }
+    "start": "ng serve",
+    "build": "ng-packagr -p package.json",
+    "test": "yarn ngautonumeric:test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "repository": {
     "url": "git://github.com/angularfy/ng-autonumeric.git"
   },
-  "peerDependencies": {
-    "@angular/core": ">=5.0.0",
-    "@angular/forms": ">=5.0.0",
-    "autonumeric": "^4.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@angular/core": ">=5.0.0",
-    "@angular/forms": ">=5.0.0",
-    "autonumeric": "^4.0.1",
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular-devkit/build-ng-packagr": "~0.10.0",
     "@angular/cli": "~7.3.0",
@@ -44,8 +23,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
-    "del-cli": "^1.1.0",
-    "copyfiles": "^2.0.0",
+    "autonumeric": "^4.0.0",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
