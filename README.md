@@ -1,60 +1,66 @@
-## ng-autonumeric
+## @angularfy/autonumeric
 
-An Angular library that wraps the awesome [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) input formatter library
+An Angular library that wraps the awesome [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) library
 
 Get in touch on autonumeric@angularfy.com
 
 ---
 
-ng-autoNumeric wraps the awesome AutoNumeric library and generate an `<input>` element managed by [AutoNumeric](https://github.com/autoNumeric/autoNumeric/).
+@angularfy/autonumeric supports most of [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) options.
 
-**Checkout the [demo](https://codepen.io/ainouss/pen/LqLVXp)**
+**Checkout the [demo](https://angularfy-autonumeric.stackblitz.io)**
 
-*Note: In order to minimize the size of the ng-autonumeric, the AutoNumeric library dependency **is not** bundled with it.*
+*Note: In order to minimize the size of the @angularfy/autonumeric, the AutoNumeric library dependency **is not** bundled with it.*
 
 This means you **need** to include the [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) library.
 
 ## Dependencies
 
-The only two dependencies are [Angular](https://angular.io) and [autoNumeric 4](https://github.com/autoNumeric/autoNumeric/). 
+The dependency is [autoNumeric 4](https://github.com/autoNumeric/autoNumeric/). 
 Here is the list of minimal required versions:
 
-| ng-autonumeric | angular | autoNumeric   |
-| -------------- | ------- | ------------- |
-| 1.x.x          | ^4.0.0  | ^4.0.0        |
+| @angularfy/autonumeric | angular | autoNumeric   |
+| ---------------------- | ------- | ------------- |
+| 1.x.x                  | ^4.0.0  | ^4.0.0        |
+| 2.x.x                  | ^4.0.0  | ^4.0.0        |
+| 3.x.x                  | ^4.0.0  | ^4.0.0        |
 
+---
 ## Installation
 
-After installing the above dependencies, install `ng-autonumeric` via npm:
+After installing the above dependencies, install `@angularfy/autonumeric` via npm:
 
 ```shell
-npm install --save @angularfy/ng-autonumeric
+npm install --save @angularfy/autonumeric
 ```
 or yarn :
 
 ```shell
-yarn add @angularfy/ng-autonumeric
+yarn add @angularfy/autonumeric
 ```
 
 Once installed you need to import our main module:
 ```js
-import { NgAutonumericModule } from '@angularfy/ng-autonumeric';
+import { AutonumericModule } from '@angularfy/autonumeric';
 
 @NgModule({
-  ...
-  imports: [NgAutonumericModule, ...],
-  ...
+  //...
+  imports: [
+            AutonumericModule.forRoot(), // ...
+        ],
+  //...
 })
 export class YourAppModule {
 }
 ```
-
-### How to use the NgAutonumericComponent ?
+---
+### How to use the @angularfy/autonumeric ?
 
 The AutoNumeric component can be instantiated the same way `AutoNumeric` can.
 
-After importing the NgAutonumericModule, in your component, you can define your options as follow :
-```js
+After importing the AutonumericModule
+in your component, you can define your options as follow :
+```ts
 this.myOptions = {
   digitGroupSeparator: '.',
   decimalCharacter: ',',
@@ -68,26 +74,17 @@ this.myOptions = {
 ```
 in your HTML :
 ```html
-<ng-autonumeric
-     [(ngModel)]="myValue"
-     [options]="myOptions">
-</ng-autonumeric>
+<input [(ngModel)]="myValue" autonumeric [options]="myOptions"/>
 ```
 
 or simply with a predefined option name:
 ```html
-<ng-autonumeric
-    [(ngModdel)]="myValue"
-    [options]="'French'">
-</ng-autonumeric>
+<input autonumeric  [(ngModdel)]="myValue" options="French">
 ```
-
 you can also use object literal as options directly in HTML 
 
 ```html
-<ng-autonumeric
-    [(ngModdel)]="myValue"
-    [options]="{
+<input [(ngModdel)]="myValue" autonumeric [options]="{
               digitGroupSeparator: '.',
               decimalCharacter: ',',
               decimalCharacterAlternative: '.',
@@ -95,15 +92,64 @@ you can also use object literal as options directly in HTML
               currencySymbolPlacement: 's',
               roundingMethod: 'U',
               minimumValue: '0'
-    }">
-</ng-autonumeric>
+    }"/>
 ```
-#### How to use the NgAutonumericDirective (since v1.0.1)
+The library supports also reactive forms.
 
-for better integration with input tag, we provide a directive :
+---
+#### Customize autonumeric defaults 
+
+You can override autonumeric default by providing default configuration:
+
+```js
+import { AutonumericModule } from '@angularfy/autonumeric';
+
+@NgModule({
+  //...
+  imports: [
+            AutonumericModule.forRoot({
+                    // user defaults here
+            }), // ...
+        ],
+  //...
+})
+export class YourAppModule {
+}
+```
+You can also use providers to achieve this :
+
+```js
+const userDefaults :AutonumericOptions= {
+// default options
+}
+export function defaultsFactory(userDefaults: AutonumericOptions): AutonumericDefaults {
+    const defaults: AutonumericDefaults = new AutonumericDefaults();
+    Object.assign(defaults, userDefaults);
+    return defaults;
+}
+@NgModule({
+  imports: [AutonumericModule],
+  providers: [{
+                       provide: USER_DEFAULTS,
+                       useValue: userDefaults
+               },
+               {
+                       provide: AutonumericDefaults,
+                       useFactory: defaultsFactory,
+                       deps: [USER_DEFAULTS]
+               }]
+})
+export class YourAppModule {
+}
+```
+
+#### Supported events 
+
+Alongside with native events, autonumeric emits two events : formatted, rawValueModified, those events are bubbled from the
+native library. Please refer to official docs for more details 
 
 ``` HTML
-<input [ngAutonumeric]="'French'" ngAutonumeric [(ngModel)]="myModel" (change)="onChange($event)" (format)="onFormat($event)"  />
+<input options="French" autonumeric [(ngModel)]="myModel" (change)="onChange($event)" (formatted)="onFormat($event)" (rawValueModified)="onValueUpdate($event) />
 ```
 If you want to keep your ngModel synchronized please use two-way binding otherwise, you can capture the change or format event.
 (format is more verbose, happens every time the input visually changes, the change event in the other hand, is triggered only when the user types something and leaves the input.)
@@ -112,30 +158,42 @@ If you want to keep your ngModel synchronized please use two-way binding otherwi
 
 you can use the component in a reardonly mode :
 ``` HTML
-<ng-autonumeric
-    [(ngModdel)]="myValue"
-    [options]="myOptions" [readonly]="true">
-</ng-autonumeric>
+<span
+    [(ngModdel)]="myValue" autonumeric [options]="myOptions">
+</span>
 ```
-in this case, we use a hidden input to instantiate the component & a span tag to display the value.
-
+you can also use an input with {..., readOnly : true } in options.
 
 #### Styling 
 we are agnostic about how the input should be styled. you can define your own style rules
 ```css
-ng-autonumeric input{
+input[autonumeric],span[autonumeric] {
     text-align:right;
 }
 
 ```
 #### Integration with other scripts & events support
 
-This wrapper supports setting the AutoNumeric options via an `options`
-**It also supports external value changes** (via `myComponent.set(42)` for instance) and update the formatting *and* the [`ngModel`]  accordingly.
+If some reason you need to access the native autonumeric instance, you can reference your element using 
+@ViewChild.
+``` HTML
+<input options="French" autonumeric #myNumericField  />
+```
+in your component :
+``` ts
+ @ViewChild('myNumericField', { static: true })
+ myNumericField:AutonumericDirective;
 
-The `paste`, `drop` and `wheel` events are supported as well.
+...
+reset(){
+    this.myNumericField.instance.reset();
+}
+set(val:any){
+    this.myNumericField.instance.set(val);
+}
 
-Moreover, if you modify the `options` attribute, the AutoNumeric settings will be automatically updated with the new options. 
+...
+```
 
 ### Demo
 
@@ -158,7 +216,7 @@ If you use IE/Edge/Safari/Opera, this *might* work ;)
 
 ### What's next ? 
 
-I will be working on supporting more AutoNumeric events (only autonumeric:formatted is supported for now). If you have any suggestions please feel free to reach by email bellow.
+I will be working on supporting more AutoNumeric options. If you have any suggestions please feel free to reach by email bellow.
 
 ### Greetings
 
@@ -172,11 +230,9 @@ Huge Thanks :)
 
 ### License
 
-`ng-autonumeric` is open-source and released under the [MIT License]
-
-Copyright © 2019 Abdelghani AINOUSS
+`@angularfy/autonumeric` is open-source and released under the [MIT License]
 
 > PS:
-I would love to know how you're using ng-autonumeric.
+I would love to know how you're using @angularfy/autonumeric.
 Contact and tell me!, abdelghani@ainouss.fr :)
 
