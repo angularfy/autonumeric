@@ -79,12 +79,12 @@ in your HTML :
 
 or simply with a predefined option name:
 ```html
-<input autonumeric  [(ngModdel)]="myValue" options="French">
+<input autonumeric  [(ngModel)]="myValue" options="French">
 ```
 you can also use object literal as options directly in HTML 
 
 ```html
-<input [(ngModdel)]="myValue" autonumeric [options]="{
+<input [(ngModel)]="myValue" autonumeric [options]="{
               digitGroupSeparator: '.',
               decimalCharacter: ',',
               decimalCharacterAlternative: '.',
@@ -159,7 +159,7 @@ If you want to keep your ngModel synchronized please use two-way binding otherwi
 you can use the component in a reardonly mode :
 ``` HTML
 <span
-    [(ngModdel)]="myValue" autonumeric [options]="myOptions">
+    [(ngModel)]="myValue" autonumeric [options]="myOptions">
 </span>
 ```
 you can also use an input with {..., readOnly : true } in options.
