@@ -2,7 +2,7 @@
 
 An Angular library that wraps the awesome [AutoNumeric](https://github.com/autoNumeric/autoNumeric/) library
 
-Get in touch on autonumeric@angularfy.com
+Get in touch : abdelghani@ainouss.fr
 
 ---
 
