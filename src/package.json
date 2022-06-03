@@ -28,13 +28,13 @@
   "homepage": "http://www.angularfy.com/projects/autonumeric",
   "peerDependencies": {
     "@angular/common": "^4.0.1",
-    "@angular/core": "^4.0.1",
+    "@angular/core": "^11.0.5",
     "@angular/forms": "^4.0.1",
     "autonumeric": "^4.0.1"
   },
   "devDependencies": {
     "@angular/common": "^4.0.1",
-    "@angular/core": "^4.0.1",
+    "@angular/core": "^11.0.5",
     "@angular/forms": "^4.0.1",
     "autonumeric": "^4.0.1"
   }
