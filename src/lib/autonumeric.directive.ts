@@ -67,6 +67,10 @@ export class AutonumericDirective implements OnInit, AfterViewInit, OnChanges, O
   }
 
   ngOnInit(): void {
+    this.instance = new AutoNumeric(
+      this.elm.nativeElement,
+      this.getOptions()
+    );
   }
 
   private normalize(options: any) {
@@ -82,10 +86,6 @@ export class AutonumericDirective implements OnInit, AfterViewInit, OnChanges, O
   }
 
   ngAfterViewInit(): void {
-    this.instance = new AutoNumeric(
-      this.elm.nativeElement,
-      this.getOptions()
-    );
     this.setDisabledState(this.isDisabled);
     this.unsubscribeFormat = this.renderer.listen(this.elm.nativeElement, 'autoNumeric:formatted', ($event) => {
       this.formatted.emit($event);
